@@ -1,0 +1,10 @@
+*
+!/.gitignore
+!/.npmignore
+!/package.json
+!/package-lock.json
+!/tsconfig.json
+
+!/src
+
+!/src/**/*

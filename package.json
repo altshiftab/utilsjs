@@ -1,0 +1,33 @@
+{
+    "name": "@altshiftab/utils",
+    "version": "0.0.1",
+    "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vphpersson/X.git"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
+    "exports": {
+        "./http/errors": {
+            "import": "./dist/http/errors.js",
+            "types": "./dist/http/errors.d.ts"
+        },
+        "./http/types": {
+            "import": "./dist/http/types.js",
+            "types": "./dist/http/types.d.ts"
+        },
+        "./http/utils": {
+            "import": "./dist/http/utils.js",
+            "types": "./dist/http/utils.d.ts"
+        }
+    },
+    "scripts": {
+        "prepare": "npm run build",
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "typescript": "^5.9.3"
+    }
+}
