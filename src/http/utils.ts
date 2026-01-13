@@ -46,3 +46,18 @@ export function problemDetailFromResponseText(responseText: string) {
 
     return problemDetail;
 }
+
+export function getBadStatusCodeErrorMessage(err: BadStatusCodeError): string {
+    let message = String(err);
+    const responseBody = err.context.responseBody;
+    if (responseBody) {
+        const problemDetail = problemDetailFromResponseText(responseBody);
+        if (problemDetail && problemDetail.detail) {
+            message = problemDetail.detail;
+        } else {
+            message = responseBody;
+        }
+    }
+
+    return message;
+}
