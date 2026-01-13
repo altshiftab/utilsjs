@@ -1,4 +1,4 @@
-import {Context, RequestInitEx} from "./types.js";
+import {Context, ProblemDetail, RequestInitEx} from "./types.js";
 import {BadStatusCodeError, FetchError} from "./errors.js";
 
 export async function fetchWithRequest(request: Request, options: RequestInitEx= {}) {
@@ -33,4 +33,16 @@ export async function fetchWithRequest(request: Request, options: RequestInitEx=
 export async function fetchEx(url: string | URL, options: RequestInit & RequestInitEx = {}) {
     options.method ||= "GET";
     return fetchWithRequest(new Request(typeof url === "string" ? url : url.toString(), options));
+}
+
+export function problemDetailFromResponseText(responseText: string) {
+    let problemDetail: ProblemDetail | null = null;
+    try {
+        const candidate = JSON.parse(responseText);
+        if (candidate.title && candidate.status && candidate.instance) {
+            problemDetail = candidate;
+        }
+    } catch {}
+
+    return problemDetail;
 }
